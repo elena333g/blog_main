@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class category(models.Model):
+class Category(models.Model):
     title = models.CharField(max_length=225)
 
     class Meta:
@@ -22,7 +22,7 @@ class Post(models.Model):
         (DRAFT, 'Draft')
     }
 
-    category = models.ForeignKey(category, related_name='post', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='post', on_delete=models.CASCADE)
     title = models.CharField(max_length=225)
     intro = models.TextField()
     body = models.TextField()
@@ -34,7 +34,7 @@ class Post(models.Model):
         return self.title
 
 
-class comment(models.Model):
+class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     name = models.CharField(max_length=225)
     email = models.EmailField()
